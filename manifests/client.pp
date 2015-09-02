@@ -8,6 +8,11 @@ class mco_profile::client (
   $connector          = $mco_profile::params::connector,
 ) {
 
+  user { "${::hostname}_client":
+    password => '!',
+    shell    => '/usr/sbin/nologin',
+  }
+
   mcollective::user { "${::hostname}_client":
     homedir           => '/root',
     certificate       => $ssl_server_cert,
