@@ -8,6 +8,27 @@ class mco_profile::client (
   $connector          = $mco_profile::params::connector,
 ) {
 
+  if (defined(Class['mco_profile::server'])) {
+    Class['::mcollective'] {
+      client => true,
+    }
+  }
+  else
+  {
+    class { '::mcollective':
+      server             => false,
+      client             => true,
+
+      securityprovider   => 'ssl',
+      middleware_ssl     => true,
+      middleware_hosts   => $middleware_hosts,
+      connector          => $connector,
+      ssl_server_public  => $ssl_server_cert,
+      ssl_server_private => $ssl_server_private,
+      ssl_ca_cert        => $ssl_ca_cert,
+    }
+  }
+
   user { "${::hostname}_client":
     password => '!',
     shell    => '/usr/sbin/nologin',
