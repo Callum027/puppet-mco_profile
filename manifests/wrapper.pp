@@ -31,6 +31,9 @@ class mco_profile::wrapper (
     server              => $server,
     client              => $client,
 
+    securityprovider    => 'ssl',
+    middleware_ssl      => true,
+
     middleware_ssl_port => $middleware_ssl_port,
     middleware_user     => $middleware_user,
     middleware_password => $middleware_password,
@@ -38,7 +41,6 @@ class mco_profile::wrapper (
     collectives         => $collectives,
 
     middleware_hosts    => $middleware_hosts,
-    ssl_server_cert     => $ssl_server_cert,
     ssl_server_private  => $ssl_server_private,
     ssl_server_public   => $ssl_server_public,
     ssl_ca_cert         => $ssl_ca_cert,
