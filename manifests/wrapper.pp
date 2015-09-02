@@ -27,6 +27,8 @@ class mco_profile::wrapper (
   $connector
 ) {
 
+   notice { "notice $server, $client, $middleware_ssl_port, $middleware_user, $middleware_password, $main_collective, $collectives, $middleware_hosts, $ssl_server_cert, $ssl_server_private, $ssl_server_public, $ssl_ca_cert, $connector": }
+
   class { '::mcollective':
     server              => $server,
     client              => $client,
@@ -42,27 +44,27 @@ class mco_profile::wrapper (
 
     middleware_hosts    => $middleware_hosts,
     ssl_server_private  => $ssl_server_private,
-    ssl_server_public   => $ssl_server_public,
+    ssl_server_public   => $ssl_server_cert,
     ssl_ca_cert         => $ssl_ca_cert,
     connector           => $connector,
   }
 
-    if ($client == true) {
-      user { "${::hostname}_client":
-        password => '!',
-        shell    => '/usr/sbin/nologin',
-      }
+  if ($client == true) {
+    user { "${::hostname}_client":
+      password => '!',
+      shell    => '/usr/sbin/nologin',
+    }
 
-      mcollective::user { "${::hostname}_client":
-        homedir           => '/root',
-        certificate       => $ssl_server_cert,
-        private_key       => $ssl_server_private,
-        ssl_ca_cert       => $ssl_ca_cert,
-        ssl_server_public => $ssl_server_public,
-        middleware_hosts  => $middleware_hosts,
-        middleware_ssl    => true,
-        securityprovider  => 'ssl',
-        connector         => $connector,
+    mcollective::user { "${::hostname}_client":
+      homedir           => '/root',
+      certificate       => $ssl_server_cert,
+      private_key       => $ssl_server_private,
+      ssl_ca_cert       => $ssl_ca_cert,
+      ssl_server_public => $ssl_server_public,
+      middleware_hosts  => $middleware_hosts,
+      middleware_ssl    => true,
+      securityprovider  => 'ssl',
+      connector         => $connector,
     }
   }
 
