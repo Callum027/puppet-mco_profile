@@ -21,4 +21,10 @@ class mco_profile::params (
   # No resources are declared by this class. It should only be used to set
   # Hiera parameters to propagate to inheriting classes.
 
+  # FIXME: Don't break that cardinal rule above!
+  class { '::mcollective':
+    server             => false,
+    client             => false,
+  }
+
 }
