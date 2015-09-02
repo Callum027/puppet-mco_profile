@@ -45,4 +45,5 @@ class mco_profile (
     connector           => $connector,
   }
 
+  contain ::mco_profile::wrapper
 }

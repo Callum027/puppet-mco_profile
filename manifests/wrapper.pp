@@ -49,6 +49,8 @@ class mco_profile::wrapper (
     connector           => $connector,
   }
 
+  contain ::mcollective
+
   if ($client == true) {
     user { "${::hostname}_client":
       password => '!',
