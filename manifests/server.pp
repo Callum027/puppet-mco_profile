@@ -10,19 +10,19 @@
 # an ENC.
 #
 class mco_profile::server (
-  $middleware_ssl_port = $mco_profile::middleware_ssl_port,
-  $middleware_user     = $mco_profile::middleware_user,
-  $middleware_password = $mco_profile::middleware_password,
-  $main_collective     = $mco_profile::main_collective,
-  $collectives         = $mco_profile::collectives,
+  $middleware_ssl_port = $mco_profile::params::middleware_ssl_port,
+  $middleware_user     = $mco_profile::params::middleware_user,
+  $middleware_password = $mco_profile::params::middleware_password,
+  $main_collective     = $mco_profile::params::main_collective,
+  $collectives         = $mco_profile::params::collectives,
 
-  $middleware_hosts    = $mco_profile::middleware_hosts,
-  $ssl_server_cert     = $mco_profile::ssl_server_cert,
-  $ssl_server_private  = $mco_profile::ssl_server_private,
-  $ssl_server_public   = $mco_profile::ssl_server_public,
-  $ssl_ca_cert         = $mco_profile::ssl_ca_cert,
-  $connector           = $mco_profile::connector
-) inherits mco_profile {
+  $middleware_hosts    = $mco_profile::params::middleware_hosts,
+  $ssl_server_cert     = $mco_profile::params::ssl_server_cert,
+  $ssl_server_private  = $mco_profile::params::ssl_server_private,
+  $ssl_server_public   = $mco_profile::params::ssl_server_public,
+  $ssl_ca_cert         = $mco_profile::params::ssl_ca_cert,
+  $connector           = $mco_profile::params::connector
+) inherits mco_profile::params {
 
   Class['::mcollective'] {
     server => true,

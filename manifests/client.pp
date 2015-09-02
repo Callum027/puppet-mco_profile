@@ -1,12 +1,12 @@
 # an example profile for mco clients
 class mco_profile::client (
-  $middleware_hosts   = $mco_profile::middleware_hosts,
-  $ssl_server_cert    = $mco_profile::ssl_server_cert,
-  $ssl_server_private = $mco_profile::ssl_server_private,
-  $ssl_server_public  = $mco_profile::ssl_server_public,
-  $ssl_ca_cert        = $mco_profile::ssl_ca_cert,
-  $connector          = $mco_profile::connector,
-) inherits mco_profile {
+  $middleware_hosts    = $mco_profile::params::middleware_hosts,
+  $ssl_server_cert     = $mco_profile::params::ssl_server_cert,
+  $ssl_server_private  = $mco_profile::params::ssl_server_private,
+  $ssl_server_public   = $mco_profile::params::ssl_server_public,
+  $ssl_ca_cert         = $mco_profile::params::ssl_ca_cert,
+  $connector           = $mco_profile::params::connector
+) inherits mco_profile::params {
 
   Class['::mcollective'] {
     client => true,
