@@ -10,6 +10,13 @@ class mco_profile::client (
 
   Class['::mcollective'] {
     client => true,
+
+    middleware_hosts   => $middleware_hosts,
+    ssl_server_cert    => $ssl_server_cert,
+    ssl_server_private => $ssl_server_private,
+    ssl_server_public  => $ssl_server_public,
+    ssl_ca_cert        => $ssl_ca_cert,
+    connector          => $connector,
   }
 
   user { "${::hostname}_client":

@@ -19,7 +19,7 @@ class mco_profile::server (
   $middleware_hosts    = $mco_profile::params::middleware_hosts,
   $ssl_server_cert     = $mco_profile::params::ssl_server_cert,
   $ssl_server_private  = $mco_profile::params::ssl_server_private,
-  $ssl_server_public   = $mco_profile::params::ssl_server_public,
+  # no ssl_server_public
   $ssl_ca_cert         = $mco_profile::params::ssl_ca_cert,
   $connector           = $mco_profile::params::connector
 ) inherits mco_profile::params {
@@ -32,6 +32,13 @@ class mco_profile::server (
     middleware_password => $middleware_password,
     main_collective     => $main_collective,
     collectives         => $collectives,
+
+    middleware_hosts    => $middleware_hosts,
+    ssl_server_cert     => $ssl_server_cert,
+    ssl_server_private  => $ssl_server_private,
+    # no ssl_server_public
+    ssl_ca_cert         => $ssl_ca_cert,
+    connector           => $connector,
   }
 
 }
