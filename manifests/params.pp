@@ -2,6 +2,8 @@
 # together the MCollective middleware.
 #
 class mco_profile::params (
+  $server                    = true,
+  $client                    = false,
   $main_collective           = 'mcollective',
   $collectives               = undef,
   $middleware_hosts          = undef,
@@ -20,11 +22,5 @@ class mco_profile::params (
 
   # No resources are declared by this class. It should only be used to set
   # Hiera parameters to propagate to inheriting classes.
-
-  # FIXME: Don't break that cardinal rule above!
-  class { '::mcollective':
-    server             => false,
-    client             => false,
-  }
 
 }
