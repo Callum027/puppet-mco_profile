@@ -1,7 +1,7 @@
 # an example profile for mco clients
-class mco_profile::client inherits mco_profile {
+class mco_profile::client {
 
-  Class['::mco_profile::wrapper'] {
+  ::Mco_profile::Wrapper <| name = '::mco_profile::wrapper' |> {
     client => true,
   }
 

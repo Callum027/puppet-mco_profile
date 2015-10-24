@@ -9,9 +9,9 @@
 # parameters are set in Hiera. It will not work if the parameters are set from
 # an ENC.
 #
-class mco_profile::server inherits mco_profile {
+class mco_profile::server {
 
-  Class['::mco_profile::wrapper'] {
+  ::Mco_profile::Wrapper <| name = '::mco_profile::wrapper' |> {
     server => true,
   }
 

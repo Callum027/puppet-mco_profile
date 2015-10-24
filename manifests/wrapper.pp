@@ -9,9 +9,9 @@
 # parameters are set in Hiera. It will not work if the parameters are set from
 # an ENC.
 #
-class mco_profile::wrapper (
-  $server,
-  $client,
+define mco_profile::wrapper(
+  $server = $::mco_profile::params::server,
+  $client = $::mco_profile::params::client,
 
   $middleware_ssl_port,
   $middleware_user,

@@ -10,9 +10,6 @@
 # an ENC.
 #
 class mco_profile (
-  $server              = $mco_profile::params::server,
-  $client              = $mco_profile::params::client,
-
   $middleware_ssl_port = $mco_profile::params::middleware_ssl_port,
   $middleware_user     = $mco_profile::params::middleware_user,
   $middleware_password = $mco_profile::params::middleware_password,
@@ -27,10 +24,7 @@ class mco_profile (
   $connector           = $mco_profile::params::connector
 ) inherits mco_profile::params {
 
-  class { '::mco_profile::wrapper':
-    server              => $server,
-    client              => $client,
-
+  @::mco_profile::wrapper { '::mco_profile::wrapper':
     middleware_ssl_port => $middleware_ssl_port,
     middleware_user     => $middleware_user,
     middleware_password => $middleware_password,
@@ -44,6 +38,4 @@ class mco_profile (
     ssl_ca_cert         => $ssl_ca_cert,
     connector           => $connector,
   }
-
-  contain ::mco_profile::wrapper
 }
