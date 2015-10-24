@@ -11,7 +11,7 @@
 #
 class mco_profile::server {
 
-  ::Mco_profile::Wrapper <| name = '::mco_profile::wrapper' |> {
+  ::Mco_profile::Wrapper <| name == '::mco_profile::wrapper' |> {
     server => true,
   }
 
